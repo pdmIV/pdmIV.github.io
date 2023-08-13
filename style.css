@@ -1,0 +1,167 @@
+body {
+    margin: 0;
+    display: flex;
+}
+
+.sidebar {
+    width: 80px;
+    background-color: #333;
+    padding-top: 20px;
+    position: fixed;
+    height: 100%;
+    overflow: hidden;
+    transition: 0.3s;
+}
+
+.sidebar a {
+    padding: 8px 20px 8px;
+    text-align: right;
+    text-decoration: none;
+    font-size: 40px;
+    color: white;
+    display: block;
+}
+
+.sidebar.expanded {
+    width: 200px;
+}
+
+.content {
+    margin-left: 80px; /* Adjust this margin to match the sidebar width */
+    padding: 20px;
+}
+
+
+header {
+    background-color: #222;
+    padding: 1rem;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px;
+    font-size: 1.5rem;
+}
+
+.logo {
+    font-size: 1.5rem;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+}
+
+.nav-links li {
+    margin-right: 1rem;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #fff;
+}
+
+section {
+    padding: 2rem;
+}
+
+h1 {
+    font-size: 2rem;
+}
+
+p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+/* Additional styles for alternating left and right alignment */
+.left {
+    width: 60%; /* Adjust the width as needed */
+    float: left;
+    padding: 30px;
+    box-sizing: border-box;
+}
+
+/* Add media query for responsiveness */
+@media (max-width: 1000px) {
+    .left {
+        width: 100%; /* Adjust for smaller screens */
+    }
+}
+
+.left.activities {
+    width: 40%; /* Adjust the width as needed */
+    padding: 15px;
+    box-sizing: border-box;
+}
+
+
+.right {
+    background-color: #333;
+    text-align: right;
+}
+
+/* Styles for ASCII art */
+.ascii-art {
+    font-family: monospace;
+    white-space: pre;
+    animation: asciiAnimation 5s linear infinite;
+}
+
+@keyframes asciiAnimation {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+/* Social Media Buttons */
+.fa {
+    padding: 20px;
+    font-size: 30px;
+    width: 30px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 50%;
+  }
+
+  .fa-youtube:hover {
+    background: #bb0000;
+    color: white;
+  }
+
+ .fa-linkedin:hover {
+    background: #007bb5;
+    color: white;
+  }
+
+ .fa-github:hover {
+    background: #011ef8;
+    color: #fff;
+ }
+
+
+
+
+/* Dark mode styles */
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #000;
+        color: #ccc;
+    }
+
+    header {
+        background-color: #111;
+    }
+
+    .nav-links a {
+        color: #ccc;
+    }
+}
