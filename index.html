@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peter Dominick Mora IV - Personal Portfolio</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
+    <style>
+        :root {
+            --brown: #4E3629;
+            --red: #C00404;
+            --white: #FFFFFF;
+            --black: #020202;
+            --charcoal: #1C1C1C;
+            --light-brown: #8C7B75;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: var(--white);
+            background-color: var(--black);
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background-color: var(--brown);
+            color: var(--white);
+            text-align: center;
+            padding: 2rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .parallax-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://live.staticflickr.com/7263/7600683884_89c9f52e28_b.jpg');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.3;
+            z-index: 0;
+        }
+
+        header h1, header p {
+            position: relative;
+            z-index: 1;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        nav {
+            background-color: var(--red);
+            padding: 1rem 0;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        main {
+            padding: 2rem 0;
+        }
+
+        section {
+            margin-bottom: 4rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s, transform 0.5s;
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        h2 {
+            color: var(--brown);
+            margin-bottom: 1rem;
+        }
+
+        .social-links {
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            color: var(--red);
+            font-size: 1.5rem;
+            margin-right: 1rem;
+        }
+
+        .card {
+            background-color: var(--charcoal);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--light-brown);
+        }
+
+        footer {
+            background-color: var(--brown);
+            color: var(--white);
+            text-align: center;
+            padding: 1rem 0;
+        }
+
+        .profile-section {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .profile-photo {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 2rem;
+            border: 4px solid var(--red);
+        }
+
+        .profile-info {
+            flex: 1;
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .project-card {
+            background-color: var(--charcoal);
+            border: 1px solid var(--light-brown);
+            border-radius: 8px;
+            padding: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .project-card h3 {
+            color: var(--red);
+            margin-bottom: 10px;
+        }
+
+        .project-link {
+            display: inline-block;
+            margin-top: 10px;
+            color: var(--brown);
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .project-link:hover {
+            text-decoration: underline;
+        }
+
+        .award-item {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--light-brown);
+        }
+
+        .award-item:last-child {
+            border-bottom: none;
+        }
+
+        .award-item h3 {
+            color: var(--red);
+            margin-bottom: 5px;
+        }
+
+        .award-item p {
+            margin-bottom: 5px;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            nav ul li {
+                margin: 10px 0;
+            }
+
+            .profile-section {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .profile-photo {
+                margin-right: 0;
+                margin-bottom: 1rem;
+            }
+
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="parallax-bg"></div>
+        <div class="container">
+            <h1>Peter Dominick Mora IV</h1>
+            <p>Computer Science - Economics Student | Brown University</p>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#awards">Awards</a></li>
+                <li><a href="#certifications">Certifications</a></li>
+                <li><a href="#extracurriculars">Extracurriculars</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+        <section id="about" class="card">
+            <div class="profile-section">
+                <img src="https://s6.imgcdn.dev/3EGHD.png" alt="Peter Dominick Mora IV" class="profile-photo">
+                <div class="profile-info">
+                    <h2>About Me</h2>
+                    <p>
+                        Peter Mora IV is a second-year student at Brown University concentrating in Computer Science and Economics. Currently, he is fluent in programming in Java and Python.
+
+Mr. Mora is particularly interested in Cyber Security, and as a member of Air Force ROTC, he aims to commission as a Cyber Warfare Officer in either the Air Force or Space Force upon graduation. He is also interested in leveraging AI and Machine Learning, and understanding its implications towards Cyber Security in the future.
+
+Mr. Mora also served as Vice-Chairman, Parliamentarian, and Treasurer of the Stephen Hopkins Society, is a Lector and Bible Study member in the Brown-RISD Catholic Community, and represents Brown in the Collegiate Chess League.
+                    </p>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/in/peter-mora-iv-54216918b/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://github.com/pdmIV" target="_blank"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="education" class="card">
+            <h2>Education</h2>
+            <h3>Brown University</h3>
+            <p>B.Sc. Computer Science - Economics</p>
+            <p>Expected Graduation: 2027</p>
+            <p>Relevant Coursework:</p>
+            <ul>
+                <li>CSCI 0150 - Intro to Object Oriented Programming</li>
+                <li>CSCI 0200 - Program Design with Data Structures and Algorithms</li>
+            </ul>
+        </section>
+
+        <section id="projects" class="card">
+            <h2>Projects</h2>
+            <div class="project-grid">
+                <div class="project-card">
+                    <h3>Python Implementation of a 1979 Messaging Board System with Resource Constraints</h3>
+                    <p>Constructed with the constraint of being unable to use existing data structures and having to minimize file read/write calls.</p>
+                    
+                </div>
+                <div class="project-card">
+                    <h3>Multimodal Graph Implementation in Java</h3>
+                    <p>Constructed from scratch an implementation of a graph data structure using both nodes and arrays for the underlying data structures. Abstracted methods and utilized interfaces to build modularity into the usage of either underlying data structure. Implemented a Breadth First Search Algorithm to find the shortest path between nodes in either Graph structure. Implemented an algorithm that represented scheduling conflicts as a graph, then allocated meeting times to members efficiently and verified that no conflicts were created in the allocation.</p>
+                    
+                </div>
+                <div class="project-card">
+                    <h3>Java Implementation of Connect 4 with Minimax Algorithm</h3>
+                    <p>Utilized a hybrid heuristic that analyzed the spatial relationship between player pieces and a weight map of opportune coordinates</p>
+                    
+                </div>
+            </div>
+        </section>
+
+        <section id="awards" class="card">
+            <h2>Awards and Honors</h2>
+            <div class="award-item">
+                <h3>STEM Scholarship</h3>
+                <p>Awarded to American Indian college students who are committed to supporting their tribal community through their skillset</p>
+                <p><em>Awarded by Native Forward, 2023</em></p>
+            </div>
+            <div class="award-item">
+                <h3>AP Scholar with Distinction</h3>
+                <p>Awarded to students who scored a 3 or higher on 5 or more exams.</p>
+                <p><em>Awarded by College Board, 2023</em></p>
+            </div>
+        </section>
+
+        <section id="certifications" class="card">
+            <h2>Certifications</h2>
+            <ul>
+                <li>Fundamentals of Quantitative Modeling - Wharton Online (July 2024)</li>
+                <li>Privacy Law and Data Protection - University of Pennsylvania Carey Law School (July 2024)</li>
+                <li>Python for Data Science, AI & Development - IBM (July 2024)</li>
+                <li>Google AI Essentials - Google (June 2024)</li>
+                <li>Google Cybersecurity Specialization - Google (June 2024)</li>
+                <li>Microsoft Office Specialist: PowerPoint 2013 - Microsoft (March 2021)</li>
+                <li>Microsoft Office Specialist: Word 2013 - Microsoft (December 2020)</li>
+                <!-- Add more certifications as needed -->
+            </ul>
+        </section>
+
+        <section id="extracurriculars" class="card">
+            <h2>Extracurricular Activities</h2>
+            <ul>
+                <li>Air Force ROTC</li>
+                <li>Collegiate Chess League</li>
+                <li>Stephen Hopkins Society</li>
+                <!-- Add more extracurricular activities as needed -->
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Peter Dominick Mora IV. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Parallax effect for header background
+        window.addEventListener('scroll', function() {
+            const parallax = document.querySelector('.parallax-bg');
+            let scrollPosition = window.pageYOffset;
+            parallax.style.transform = 'translateY(' + scrollPosition * 0.5 + 'px)';
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Fade-in effect for sections
+        const sections = document.querySelectorAll('section');
+        const options = {
+            root: null,
+            threshold: 0.1,
+            rootMargin: "0px"
+        };
+
+        const observer = new IntersectionObserver(function(entries, observer) {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) {
+                    return;
+                }
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            });
+        }, options);
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
