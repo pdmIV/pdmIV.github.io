@@ -1,55 +1,52 @@
-# Data Scientist
+# Computer Science - Economics Concentrator @ Brown University
 
-#### Technical Skills: Python, SQL, AWS, Snowflake, MATLAB
+#### Technical Skills: Python, Java, C, Assembly, Reverse Engineering, SQL
 
-## Education
-- Ph.D., Physics | The University of Texas at Dallas (_May 2022_)								       		
-- M.S., Physics	| The University of Texas at Dallas (_December 2019_)	 			        		
-- B.S., Physics | The University of Texas at Dallas (_May 2017_)
+## Education 			        		
+- B.S., Computer Science - Economics | Brown University (_May 2027_)
+
+## Biography
+Second-year undergraduate at Brown University concentrating in Computer Science - Economics. Interested in Cyber Warfare and
+the intersection of machine and deep learning with cybersecurity in private-sector and military applications. Experienced in
+management, project planning and execution, leadership, and computer programming. On-track to commission as a 2nd Lieutenant
+in the United States Air Force in 2027.
 
 ## Work Experience
-**Data Scientist @ Toyota Financial Services (_June 2022 - Present_)**
-- Uncovered and corrected missing step in production data pipeline which impacted over 70% of active accounts
-- Redeveloped loan originations model which resulted in 50% improvement in model performance and saving 1 million dollars in potential losses
+**Air Force ROTC Cadet @ Detachment 340 (_September 2023 - Present_)**
+- Served as the Oscar Flight Deputy Commander for the Fall 2024 Semester
+- Led training through live exercises such as wargaming and marching
+- Created briefings and briefed cadets and detachment cadre
+- Communicated responses/action plans resulting from feedback
+- Facilitated wing and squadron level program planning and execution
+- Led and mentored small groups under simulated high-intensity scenarios
 
-**Data Science Consultant @ Shawhin Talebi Ventures LLC (_December 2020 - Present_)**
-- Conducted data collection, processing, and analysis for novel study evaluating the impact of over 300 biometrics variables on human performance in hyper-realistic, live-fire training scenarios
-- Applied unsupervised deep learning approaches to longitudinal ICU data to discover novel sepsis sub-phenotypes
+**Professional Development Team, Detachment 340, i5space, US Space Force STARCOM (October 2024 - Present_)**
+- Co-founder
+- Planned and executed cybersecurity training through CTF (Capture the Flag) exercises
+- Taught concepts such as web exploitation, reverse engineering, enumeration, and python scripting
 
 ## Projects
-### Data-Driven EEG Band Discovery with Decision Trees
-[Publication](https://www.mdpi.com/1424-8220/22/8/3048)
+### Network Intrusion Detection using Machine Learning (CIC-IDS 2017 Dataset)
+Developed a machine learning model to detect network intrusions with high accuracy. This project involved analyzing network traffic data, training a Random Forest Classifier, and evaluating its performance.
+**Key Achievements:**
+- Achieved 99.7% accuracy in identifying malicious activity.
+- Successfully trained a Random Forest Classifier to distinguish between benign and malicious network 
+ traffic.
+- Utilized Python libraries such as Pandas, Scikit-learn, and Matplotlib for data analysis, model building, 
+ and visualization.
+- Leveraged Google Colab for development and execution
 
-Developed objective strategy for discovering optimal EEG bands based on signal power spectra using **Python**. This data-driven approach led to better characterization of the underlying power spectrum by identifying bands that outperformed the more commonly used band boundaries by a factor of two. The proposed method provides a fully automated and flexible approach to capturing key signal components and possibly discovering new indices of brain activity.
+### Java Implementation of Connect 4 with Minimax Algorithm
+Utilized a hybrid heuristic that analyzed the spatial relationship between player pieces and a weight map of opportune coordinates
 
-![EEG Band Discovery](/assets/img/eeg_band_discovery.jpeg)
+### Python Implementation of a 1979 Messaging Board System with Resource Constraints
+Constructed with the constraint of being unable to use existing data structures and having to minimize file read/write calls.
 
-### Decoding Physical and Cognitive Impacts of Particulate Matter Concentrations at Ultra-Fine Scales
-[Publication](https://www.mdpi.com/1424-8220/22/11/4240)
+### Multimodal Graph Implementation in Java
+Constructed from scratch an implementation of a graph data structure using both nodes and arrays for the underlying data structures. Abstracted methods and utilized interfaces to build modularity into the usage of either underlying data structure. Implemented a Breadth First Search Algorithm to find the shortest path between nodes in either Graph structure. Implemented an algorithm that represented scheduling conflicts as a graph, then allocated meeting times to members efficiently and verified that no conflicts were created in the allocation.
 
-Used **Matlab** to train over 100 machine learning models which estimated particulate matter concentrations based on a suite of over 300 biometric variables. We found biometric variables can be used to accurately estimate particulate matter concentrations at ultra-fine spatial scales with high fidelity (r2 = 0.91) and that smaller particles are better estimated than larger ones. Inferring environmental conditions solely from biometric measurements allows us to disentangle key interactions between the environment and the body.
-
-![Bike Study](/assets/img/bike_study.jpeg)
-
-## Talks & Lectures
-- Causality: The new science of an old question - GSP Seminar, Fall 2021
-- Guest Lecture: Dimensionality Reduction - Big Data and Machine Learning for Scientific Discovery (PHYS 5336), Spring 2021
-- Guest Lecture: Fourier and Wavelet Transforms - Scientific Computing (PHYS 5315), Fall 2020
-- A Brief Introduction to Optimization - GSP Seminar, Fall 2019
-- Weeks of Welcome Poster Competition - UTD, Fall 2019
-- A Brief Introduction to Networks - GSP Seminar, Spring 2019
-
-- [Data Science YouTube](https://www.youtube.com/channel/UCa9gErQ9AE5jT2DZLjXBIdA)
-
-## Publications
-1. Talebi S., Lary D.J., Wijeratne L. OH., and Lary, T. Modeling Autonomic Pupillary Responses from External Stimuli Using Machine Learning (2019). DOI: 10.26717/BJSTR.2019.20.003446
-2. Wijeratne, L.O.; Kiv, D.R.; Aker, A.R.; Talebi, S.; Lary, D.J. Using Machine Learning for the Calibration of Airborne Particulate Sensors. Sensors 2020, 20, 99.
-3. Lary, D.J.; Schaefer, D.; Waczak, J.; Aker, A.; Barbosa, A.; Wijeratne, L.O.H.; Talebi, S.; Fernando, B.; Sadler, J.; Lary, T.; Lary, M.D. Autonomous Learning of New Environments with a Robotic Team Employing Hyper-Spectral Remote Sensing, Comprehensive In-Situ Sensing and Machine Learning. Sensors 2021, 21, 2240. https://doi.org/10.3390/s21062240
-4. Zhang, Y.; Wijeratne, L.O.H.; Talebi, S.; Lary, D.J. Machine Learning for Light Sensor Calibration. Sensors 2021, 21, 6259. https://doi.org/10.3390/s21186259
-5. Talebi, S.; Waczak, J.; Fernando, B.; Sridhar, A.; Lary, D.J. Data-Driven EEG Band Discovery with Decision Trees. Preprints 2022, 2022030145 (doi: 10.20944/preprints202203.0145.v1).
-6. Fernando, B.A.; Sridhar, A.; Talebi, S.; Waczak, J.; Lary, D.J. Unsupervised Blink Detection Using Eye Aspect Ratio Values. Preprints 2022, 2022030200 (doi: 10.20944/preprints202203.0200.v1).
-7. Talebi, S. et al. Decoding Physical and Cognitive Impacts of PM Concentrations at Ultra-fine Scales, 29 March 2022, PREPRINT (Version 1) available at Research Square [https://doi.org/10.21203/rs.3.rs-1499191/v1]
-8. Lary, D.J. et al. (2022). Machine Learning, Big Data, and Spatial Tools: A Combination to Reveal Complex Facts That Impact Environmental Health. In: Faruque, F.S. (eds) Geospatial Technology for Human Well-Being and Health. Springer, Cham. https://doi.org/10.1007/978-3-030-71377-5_12
-9. Wijerante, L.O.H. et al. (2022). Advancement in Airborne Particulate Estimation Using Machine Learning. In: Faruque, F.S. (eds) Geospatial Technology for Human Well-Being and Health. Springer, Cham. https://doi.org/10.1007/978-3-030-71377-5_13
-
-- [Data Science Blog](https://medium.com/@shawhin)
+## Courses and Certificates
+June 2024 **Google Cybersecurity Specialization** Google
+July 2024 **IBM AI Engineering Specialization (with Honors)** IBM
+July 2024 **Fundamentals of Quantitative Modeling** Wharton School of the University of Pennsylvania
+July 2024 **Privacy Law and Data Protection** Carey Law School of the University of Pennsylvania
