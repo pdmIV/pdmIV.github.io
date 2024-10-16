@@ -28,7 +28,7 @@ in the United States Air Force in 2027.
 ## Projects
 ### Network Intrusion Detection using Machine Learning (CIC-IDS 2017 Dataset)
 Developed a machine learning model to detect network intrusions with high accuracy. This project involved analyzing network traffic data, training a Random Forest Classifier, and evaluating its performance.
-**Key Achievements:**
+#### **Key Achievements:**
 - Achieved 99.7% accuracy in identifying malicious activity.
 - Successfully trained a Random Forest Classifier to distinguish between benign and malicious network 
  traffic.
