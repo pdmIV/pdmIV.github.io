@@ -46,7 +46,7 @@ Constructed with the constraint of being unable to use existing data structures 
 Constructed from scratch an implementation of a graph data structure using both nodes and arrays for the underlying data structures. Abstracted methods and utilized interfaces to build modularity into the usage of either underlying data structure. Implemented a Breadth First Search Algorithm to find the shortest path between nodes in either Graph structure. Implemented an algorithm that represented scheduling conflicts as a graph, then allocated meeting times to members efficiently and verified that no conflicts were created in the allocation.
 
 ## Courses and Certificates
-June 2024 **Google Cybersecurity Specialization** Google
-July 2024 **IBM AI Engineering Specialization (with Honors)** IBM
-July 2024 **Fundamentals of Quantitative Modeling** Wharton School of the University of Pennsylvania
-July 2024 **Privacy Law and Data Protection** Carey Law School of the University of Pennsylvania
+- June 2024 **Google Cybersecurity Specialization** Google
+- July 2024 **IBM AI Engineering Specialization (with Honors)** IBM
+- July 2024 **Fundamentals of Quantitative Modeling** Wharton School of the University of Pennsylvania
+- July 2024 **Privacy Law and Data Protection** Carey Law School of the University of Pennsylvania
