@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Peter D. Mora IV</title>
+  <style>
+    /* Global styling */
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      overflow: hidden;
+      background: url('https://www.kali.org/blog/kali-linux-modern-wsl/images/kali-linux-modern-wsl.jpg') no-repeat center center fixed;
+      background-size: cover;
+    }
+    .desktop {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+    /* Desktop Icons */
+    .icon {
+      width: 80px;
+      text-align: center;
+      position: absolute;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .icon:hover {
+      transform: scale(1.1);
+    }
+    .icon img {
+      width: 48px;
+      height: 48px;
+      display: block;
+      margin: 0 auto;
+    }
+    .icon span {
+      font-size: 12px;
+      color: #fff;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+    }
+    /* Positioning icons */
+    #icon-resume   { top: 20px; left: 20px; }
+    #icon-about   { top: 100px; left: 20px; }
+    #icon-projects{ top: 180px; left: 20px; }
+    /* New icons */
+    #icon-github  { top: 260px; left: 20px; }
+    #icon-contact { top: 340px; left: 20px; }
+    
+    /* Window styling */
+    .window {
+      position: absolute;
+      background: #fff;
+      border: 1px solid #ccc;
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
+      width: 800px;
+      height: 600px;
+      display: none;
+      z-index: 100;
+    }
+    .title-bar {
+      background: linear-gradient(to right, #4d90fe, #357ae8);
+      color: #fff;
+      padding: 8px;
+      font-weight: bold;
+      cursor: move;
+      user-select: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .title-bar .close {
+      cursor: pointer;
+      padding: 0 8px;
+      font-size: 14px;
+    }
+    .content {
+      padding: 10px;
+      height: calc(100% - 40px);
+      overflow-y: auto;
+    }
+    /* About Me photo styling */
+    .profile-photo {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      display: block;
+      margin: 0 auto 15px;
+      border: 2px solid #357ae8;
+    }
+    /* Resume window specific content styling */
+    .resume-section {
+      margin-bottom: 15px;
+    }
+    .resume-section h3 {
+      margin: 10px 0 5px;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 5px;
+    }
+    .resume-section ul {
+      margin: 0;
+      padding-left: 20px;
+    }
+    /* Projects window specific content styling */
+    .project-item {
+      margin-bottom: 15px;
+    }
+    .project-item h4 {
+      margin: 5px 0;
+    }
+    .project-item p {
+      margin: 3px 0;
+      font-size: 14px;
+    }
+    
+    /* Taskbar styling */
+    #taskbar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 40px;
+      background: rgba(45,45,48,0.95);
+      display: flex;
+      align-items: center;
+      padding: 0 10px;
+      box-shadow: 0 -2px 5px rgba(0,0,0,0.7);
+      z-index: 200;
+    }
+    /* Container to group Start button and clock together */
+    #left-container {
+      display: flex;
+      align-items: center;
+      gap: 1850px;
+    }
+    #start-button {
+      background: linear-gradient(to bottom, #0078d7, #005499);
+      color: #fff;
+      padding: 5px 10px;
+      border-radius: 2px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+    }
+    #start-button img {
+      width: 16px;
+      height: 16px;
+      margin-right: 5px;
+    }
+    #clock {
+      color: #fff;
+      font-size: 14px;
+      margin-left: auto;
+    }
+    
+    /* Start Menu styling */
+    #start-menu {
+      position: fixed;
+      bottom: 40px;
+      left: 10px;
+      width: 250px;
+      background: rgba(240,240,240,0.95);
+      border: 1px solid #ccc;
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
+      display: none;
+      z-index: 210;
+      border-radius: 3px;
+    }
+    #start-menu ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    #start-menu li {
+      padding: 10px;
+      border-bottom: 1px solid #ddd;
+      cursor: pointer;
+    }
+    #start-menu li:hover {
+      background: #e1e1e1;
+    }
+  </style>
+</head>
+<body>
+  <div class="desktop">
+    <!-- Existing Desktop Icons -->
+    <div id="icon-resume" class="icon" onclick="openWindow('resumeWindow')">
+      <img src="https://banner2.cleanpng.com/20180715/ubk/aavj76ce5.webp" alt="Resume Icon">
+      <span>Resume</span>
+    </div>
+    <div id="icon-about" class="icon" onclick="openWindow('aboutWindow')">
+      <img src="https://www.freeiconspng.com/thumbs/person-icon/clipart--person-icon--cliparts-15.png" alt="About Me Icon">
+      <span>About Me</span>
+    </div>
+    <div id="icon-projects" class="icon" onclick="openWindow('projectsWindow')">
+      <img src="https://cdn-icons-png.flaticon.com/512/4804/4804197.png" alt="Projects Icon">
+      <span>Projects</span>
+    </div>
+    <!-- New Desktop Icons -->
+    <div id="icon-github" class="icon" onclick="window.open('https://github.com/pdmIV', '_blank')">
+      <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub Icon">
+      <span>GitHub</span>
+    </div>
+    <div id="icon-contact" class="icon" onclick="openWindow('contactWindow')">
+      <img src="https://cdn-icons-png.flaticon.com/512/561/561127.png" alt="Contact Icon">
+      <span>Contact</span>
+    </div>
+    
+    <!-- Resume Window -->
+    <div id="resumeWindow" class="window">
+      <div class="title-bar">
+        <span>Resume</span>
+        <span class="close" onclick="closeWindow('resumeWindow')">X</span>
+      </div>
+      <div class="content">
+        <h2>Resume</h2>
+        <!-- Education Section -->
+        <div class="resume-section">
+          <h3>Education</h3>
+          <ul>
+            <li>
+              <strong>Brown University</strong><br>
+              Bachelor of Science – Computer Science (2023 – May 2027)<br>
+              <em>Activities:</em> Chess Club, Brown GAMMA, AFROTC, BRCC Catholic Community, David Network, Co-Founder of the Stephen Hopkins Society.
+            </li>
+            <li>
+              <strong>Southeastern Louisiana University</strong><br>
+              Dual Enrollment – Western Civilization II (Aug 2022 – May 2023, Grade: A)
+            </li>
+            <li>
+              <strong>Mandeville High School</strong><br>
+              (Aug 2019 – May 2023, Rank: 16/432, Grade: 4.5)<br>
+              <em>Activities:</em> Boy Scouts, Track, Wrestling, Chess Club (President), Key Club, Investor's Club (Treasurer), Calculus Competitions.
+            </li>
+            <li>
+              <strong>Louisiana Tech University</strong><br>
+              Dual Enrollment – Anatomy & Physiology, Pre-Calculus (Aug 2021 – May 2022, Grade: A)
+            </li>
+          </ul>
+        </div>
+        <!-- Experience Section -->
+        <div class="resume-section">
+          <h3>Experience</h3>
+          <ul>
+            <li>
+              <strong>Mandeville High School</strong> – President of the Chess Club; Treasurer of the Investor's Club.
+            </li>
+            <li>
+              <strong>Brown University</strong> – Active member of AFROTC, BRCC Catholic Community (Lector & Men's Bible Study), and Co-Founder of the Stephen Hopkins Society.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <!-- About Me Window -->
+    <div id="aboutWindow" class="window">
+      <div class="title-bar">
+        <span>About Me</span>
+        <span class="close" onclick="closeWindow('aboutWindow')">X</span>
+      </div>
+      <div class="content">
+        <h2>About Me</h2>
+        <img src="https://media.licdn.com/dms/image/v2/D4E03AQFFWvyX9OFvWQ/profile-displayphoto-shrink_400_400/B4EZPv6vYKHAAs-/0/1734896973612?e=1746057600&v=beta&t=cghoSEIJGt0AhUCD0pUNA2MLTv5rqDnW6ZEpegfElXM" alt="Profile Photo" class="profile-photo">
+        <p>
+          Peter Mora IV is a second-year student at Brown University concentrating in Computer Science. Currently, he is fluent in programming in Java, Python, and C in addition to possessing reverse engineering skills through reading assembly.
+		  Mr. Mora is particularly interested in Cyber Security, and as a member of Air Force ROTC, he aims to commission as a Cyber Warfare Officer in either the Air Force or Space Force upon graduation. He presently serves as a PT Planning Deputy Commander and Professional Development Team Lead for the i5space program at AFROTC Detachment 340. He is also interested in leveraging AI and Machine Learning, and understanding its implications towards Cyber Security in the future.
+		  Mr. Mora also served as Vice-Chairman, Parliamentarian, and Treasurer of the Stephen Hopkins Society at Brown, is a Lector and Bible Study member in the Brown-RISD Catholic Community, and represents Brown in the Collegiate Chess League.
+        </p>
+      </div>
+    </div>
+    
+    <!-- Projects Window -->
+    <div id="projectsWindow" class="window">
+      <div class="title-bar">
+        <span>Projects</span>
+        <span class="close" onclick="closeWindow('projectsWindow')">X</span>
+      </div>
+      <div class="content">
+        <h2>Projects</h2>
+        <!-- (Project items as before) -->
+        <div class="project-item">
+          <h4>BASH Shell from Scratch</h4>
+          <p><em>Oct 2024 - Nov 2024 | Brown University</em></p>
+          <p>Developed a full-fledged REPL terminal application in C utilizing system calls and signals, featuring custom STDIN parsing and job control.</p>
+          <p><strong>Skills:</strong> C</p>
+        </div>
+        <div class="project-item">
+          <h4>Malloc (Dynamic Memory Allocation) Implementation</h4>
+          <p><em>Nov 2024 | Brown University</em></p>
+          <p>Implemented malloc, free, and realloc functions using mem_sbrk; optimized memory management by coalescing free blocks and ensuring safety with error checking.</p>
+          <p><strong>Skills:</strong> C, Systems Engineering</p>
+        </div>
+        <div class="project-item">
+          <h4>Buffer Overflow</h4>
+          <p><em>Oct 2024 | Brown University</em></p>
+          <p>Crafted a payload using a NOP sled and shellcode injection while bypassing canary detection through stack pointer manipulation.</p>
+          <p><strong>Skills:</strong> Cybersecurity</p>
+        </div>
+        <div class="project-item">
+          <h4>Network Intrusion Detection using Machine Learning (CIC-IDS 2017 Dataset)</h4>
+          <p><em>Oct 2024 | Brown University</em></p>
+          <p>Developed a Random Forest Classifier model to detect malicious network activity with 99.7% accuracy using Python (Pandas, Scikit-learn, Matplotlib) on Google Colab.</p>
+          <p><strong>Skills:</strong> Machine Learning, IDS, Cybersecurity, Python</p>
+        </div>
+        <div class="project-item">
+          <h4>Reverse Engineering CTF</h4>
+          <p><em>Sep 2024 | Brown University</em></p>
+          <p>Solved multiple levels of a reverse engineering challenge by analyzing assembly code with GDB to uncover hidden functionalities.</p>
+          <p><strong>Skills:</strong> Cybersecurity, Reverse Engineering</p>
+        </div>
+        <div class="project-item">
+          <h4>Keras Regressive Neural Network Modelling Concrete Compressive Strength</h4>
+          <p><em>Jul 2024</em></p>
+          <p>Tested multiple neural network architectures to predict concrete strength, optimizing model performance by comparing mean squared errors.</p>
+          <p><strong>Skills:</strong> AI, Scikit-Learn, Python, Neural Networks, Keras</p>
+        </div>
+        <div class="project-item">
+          <h4>Machine Learning Project with Australian Government's Bureau of Meteorology Data</h4>
+          <p><em>Jul 2024</em></p>
+          <p>Implemented various models (Linear Regression, KNN, Decision Trees, Logistic Regression, SVM) and evaluated them using metrics like accuracy, F1-Score, and R2-Score.</p>
+          <p><strong>Skills:</strong> Scikit-Learn, Python, Data Science</p>
+          <p>Link: <a href="https://drive.google.com/file/d/17FL5_k1u47h-XhBQP8vu8GyXZCz_68Xx/view?usp=sharing" target="_blank">View Notebook</a></p>
+        </div>
+        <div class="project-item">
+          <h4>Python Implementation of a 1979 Messaging Board System with Resource Constraints</h4>
+          <p><em>Apr 2024 | Brown University</em></p>
+          <p>Built a messaging board system from scratch, overcoming strict resource constraints by minimizing file I/O and avoiding standard data structures.</p>
+          <p><strong>Skills:</strong> Python, Git, Algorithms</p>
+        </div>
+        <div class="project-item">
+          <h4>Multimodal Graph Implementation in Java</h4>
+          <p><em>Mar 2024 | Brown University</em></p>
+          <p>Developed a modular graph data structure with dual underlying storage and implemented BFS for shortest path search and scheduling conflict resolution.</p>
+          <p><strong>Skills:</strong> Java, Data Structures, Algorithms</p>
+        </div>
+        <div class="project-item">
+          <h4>Java Implementation of Connect 4 with Minimax Algorithm</h4>
+          <p><em>Dec 2023 | Brown University</em></p>
+          <p>Designed a Connect 4 game utilizing a hybrid heuristic and the Minimax algorithm to determine optimal moves based on spatial analysis.</p>
+          <p><strong>Skills:</strong> Java, Algorithms, Machine Learning</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Contact Window -->
+    <div id="contactWindow" class="window">
+      <div class="title-bar">
+        <span>Contact</span>
+        <span class="close" onclick="closeWindow('contactWindow')">X</span>
+      </div>
+      <div class="content">
+        <h2>Contact Me</h2>
+        <form action="mailto:peter_mora@brown.edu" method="post" enctype="text/plain">
+          <label for="name">Name:</label><br>
+          <input type="text" id="name" name="name" required><br><br>
+          <label for="email">Email:</label><br>
+          <input type="email" id="email" name="email" required><br><br>
+          <label for="message">Message:</label><br>
+          <textarea id="message" name="message" rows="5" required></textarea><br><br>
+          <input type="submit" value="Send">
+          <input type="reset" value="Reset">
+        </form>
+      </div>
+    </div>
+    
+  </div>
+  
+  <!-- Taskbar -->
+  <div id="taskbar">
+    <div id="left-container">
+      <div id="start-button" onclick="toggleStartMenu()">
+        <img src="https://e7.pngegg.com/pngimages/15/27/png-clipart-microsoft-windows-logo-windows-7-microsoft-windows-windows-vista-windows-xp-icon-windows-background-orange-windows-thumbnail.png" alt="Start Icon">
+        <span>Start</span>
+      </div>
+      <div id="clock"></div>
+    </div>
+  </div>
+  
+  <!-- Start Menu -->
+  <div id="start-menu">
+    <ul>
+      <li onclick="openWindow('resumeWindow'); toggleStartMenu();">Resume</li>
+      <li onclick="openWindow('aboutWindow'); toggleStartMenu();">About Me</li>
+      <li onclick="openWindow('projectsWindow'); toggleStartMenu();">Projects</li>
+      <li onclick="openWindow('contactWindow'); toggleStartMenu();">Contact</li>
+    </ul>
+  </div>
+  
+  <script>
+    // Toggle Start Menu visibility
+    function toggleStartMenu() {
+      var startMenu = document.getElementById('start-menu');
+      startMenu.style.display = (startMenu.style.display === 'block') ? 'none' : 'block';
+    }
+    
+    // Open a window and center it on screen
+    function openWindow(id) {
+      var win = document.getElementById(id);
+      win.style.display = 'block';
+      win.style.top = ((window.innerHeight - win.offsetHeight - 40) / 2) + 'px';
+      win.style.left = ((window.innerWidth - win.offsetWidth) / 2) + 'px';
+      win.style.zIndex = 101;
+    }
+    
+    // Close a window
+    function closeWindow(id) {
+      document.getElementById(id).style.display = 'none';
+    }
+    
+    // Enable drag functionality for windows
+    document.querySelectorAll('.window').forEach(function(win) {
+      var titleBar = win.querySelector('.title-bar');
+      titleBar.addEventListener('mousedown', function(e) {
+        var offsetX = e.clientX - win.offsetLeft;
+        var offsetY = e.clientY - win.offsetTop;
+        
+        function mouseMoveHandler(e) {
+          win.style.top = (e.clientY - offsetY) + 'px';
+          win.style.left = (e.clientX - offsetX) + 'px';
+        }
+        
+        function reset() {
+          document.removeEventListener('mousemove', mouseMoveHandler);
+          document.removeEventListener('mouseup', reset);
+        }
+        
+        document.addEventListener('mousemove', mouseMoveHandler);
+        document.addEventListener('mouseup', reset);
+      });
+    });
+    
+    // Clock update for taskbar
+    function updateClock() {
+      var clockElement = document.getElementById('clock');
+      var now = new Date();
+      var hours = now.getHours();
+      var minutes = now.getMinutes();
+      minutes = minutes < 10 ? '0' + minutes : minutes;
+      clockElement.textContent = hours + ':' + minutes;
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+    
+    // Close Start Menu when clicking outside it
+    document.addEventListener('click', function(e) {
+      var startMenu = document.getElementById('start-menu');
+      var startButton = document.getElementById('start-button');
+      if (!startMenu.contains(e.target) && !startButton.contains(e.target)) {
+        startMenu.style.display = 'none';
+      }
+    });
+  </script>
+</body>
+</html>
